@@ -1,0 +1,37 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --primary-color : #4b0081;
+  --secondary-color: #9775da; 
+  --text-color-secondary: var(--primary-color);
+  --text-color-detail: #00FF11;
+
+  --font-family: 'Righteous' sans-serif;
+  --h1: 800 24px/135% var(--font-family);
+  --h2: 800 16px/140% var(--font-family);
+  --h3: 800 14px/140% var(--font-family);
+  --text: 400 16px/140% var(--font-family);
+  --text-sm: 400 14px/140% var(--font-family);
+}
+
+body{
+  font: var(--text);
+  background-color: var(--primary-color);
+  color: black;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover{
+  color: var(--text-color-detail);
+}
+
+h1, h2, h3{
+font: inherit;
+}
