@@ -1,0 +1,89 @@
+header{
+  /* border: solid 1px yellow; */
+  height: 9vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 10px;
+
+#header-logo{
+  height: 80%;
+  margin-left: 25px;
+}
+
+  #div-search-bar{
+    
+    /* border: solid 1px greenyellow; */
+    height: 70%;
+    width: 500px ;
+    position: relative;
+    left: 2rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    
+    input{
+      /* width: 94%; */
+      height: 90%;
+      padding: 2px 0.5rem 2px 0.5rem;
+      border-radius: 0.3rem;
+      font:var(--text);
+      
+    }
+    button{
+      height: 80%;
+      width:  35px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius:0.3rem ;
+      background-color: var(--secondary-color);
+
+      
+      &:active{
+        background-color: #9300FF;
+      }
+    }
+    #lupa{
+      height: 25px;
+      
+    }
+  }
+
+  nav{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 20px;
+    color: azure;
+
+    .nav-options{
+      a:hover{
+      box-sizing: content-box;
+      background-color: #9775da;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    }
+    #button-login{
+      border: solid 2px white;
+      box-sizing: content-box;
+      padding: 5px;
+      background-color: var(--primary-color);
+
+      &:hover{
+        padding: 6px;
+        border: solid 2px var(--secondary-color);
+      }
+    }
+    #account-circle{
+
+    }
+  }
+}
+
+

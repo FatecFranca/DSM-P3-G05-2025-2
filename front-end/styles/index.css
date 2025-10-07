@@ -1,1 +1,4 @@
 @import url(global.css);
+@import url(componentes/header.css);
+@import url(pages/cadastro-estabelecimentos.css);
+@import url(componentes/large-button.css);

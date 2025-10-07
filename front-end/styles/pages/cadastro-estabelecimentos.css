@@ -1,0 +1,142 @@
+#main{
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  /* border: solid 1px green; */
+  
+}
+
+#menu{
+  height: 450px;
+  width: 1000px;
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #c7c7c7;
+  margin: auto;
+  border-radius: 2rem;
+  padding: 1.5%;
+  
+  nav{
+    /* height: 13%; */
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    /* border: solid 1px red; */
+
+    button{
+      /* border: solid 1px green; */
+      box-sizing: content-box;
+      padding: 5px;
+      border-radius: 0.3rem;
+      background-color: #c7c7c7 ;
+      color: var(--primary-color);
+      font-size:large;
+      border: solid 2px var(--primary-color);
+      margin-top: 6px;
+      margin-bottom: 6px;
+
+      &:hover{
+        padding: 6px;
+        background-color: #9300FF;
+        color: white;
+      }
+
+      &.active{
+        background-color: var(--secondary-color);
+        color: white;
+      }
+    }
+  }
+
+  .tab-content{
+    display: none;
+    /* border: solid 2px green; */
+    padding: 1%;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:space-between;
+    form{
+      
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      #edit-id-button{
+        position: relative;
+        top: 15px;
+        right: 10px
+      }
+      #exclude-button{
+        background-color: #F00202;
+      }
+      .form-field{
+        /* border: solid 2px red; */
+        
+        label{
+          display: block;
+          font-size: 18px;
+          color: var(--primary-color);
+          font-weight: 550;
+          padding: 0px;
+        }
+        input{
+          height: 40px;
+          padding: 4px;
+        }
+        .input-id{
+          width: 50px;
+        }
+        #input-nome-fantasia{
+          width: 250px;
+          
+        }
+        #input-openning-hour{
+          width: 100px;
+        }
+
+        #input-closing-hour{
+          width: 100px;
+        }
+        #input-street{
+          width: 250px;
+        }
+
+        #input-street-number{
+          width: 80px;
+        }
+
+        #input-phone-number{
+          width: 150px;
+        }
+
+        #input-razao-social{
+          width: 230px
+        }
+
+        #input-cnpj{
+          width: 170px
+        }
+        #input-full-owner-name{
+          width: 190px
+        }
+
+        #input-owner-cpf{
+          width:130px;
+        }
+     }
+    }
+    
+    #create-button{
+      justify-self: center;
+
+    }
+
+  }
+  .tab-content.active{
+    display: flex;
+  }
+}
+
+

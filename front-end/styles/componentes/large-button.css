@@ -1,0 +1,12 @@
+.large-button{
+  border: solid 2px green;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0.5rem;
+  background-color: var(--primary-color);
+
+  &:active{
+    background-color: #5F00A3;
+    padding: 0.2rem;
+  }
+}
