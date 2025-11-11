@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -18,5 +18,5 @@ datasource db {
 model Category {
   id     String  @id @default(auto()) @map("_id") @db.ObjectId
   title  String  @unique
-  places Place[]
+  // places Place[]
 }
