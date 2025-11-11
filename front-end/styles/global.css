@@ -47,7 +47,7 @@ input{
   opacity: 0.75 ; /* Ensures full opacity in Firefox */
 }
 
-h1, h2, h3{
+h1, h2, h3, label{
 font: inherit;
 }
 

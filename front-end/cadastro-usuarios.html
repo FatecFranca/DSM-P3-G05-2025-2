@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/styles/index.css">
+  <link rel="stylesheet" href="/styles/pages/cadastro-usuarios.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+  <title>Roll</title>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="/images/Logo.png" alt="" id="header-logo">
+      <div id="div-search-bar">
+        <input id="div-search-bar" placeholder="Busque lugares...">
+        <button>
+          <img id="lupa" src="/icons/lupa.svg" alt="">
+        </button>
+      </div>
+
+      <nav>
+        <div class="nav-options"><a href="index.html">Home</a></div> 
+        <div class="nav-options"><a href="">Eventos</a></div>
+        <div class="nav-options"><a href="">Estabelecimentos</a></div>
+        <div class="nav-options"><a href="">Contato</a></div>
+
+        <button id="button-login"><a href="">Login</a></button>
+
+        <a id="account-circle" href=""><img src="/icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt=""></a>
+      </nav>
+    </header>
+
+    <div id="menu">
+      <nav>
+        <button class="tab-button" onclick="openTab('tab1', event)">
+          <p>Criar</p>
+        </button>
+
+        <button class="tab-button" onclick="openTab('tab2', event)">
+          <p>Editar</p>
+        </button>
+
+        <button class="tab-button" onclick="openTab('tab3', event)">
+          <p>Excluir</p>
+        </button>
+      </nav>
+
+      <div class="tab-content active" id="tab1">
+        <form action="">
+           <div class="form-field">
+              <label for="">Nome</label>
+              <input type="text" placeholder="Adalberto Silveira">
+           </div>
+
+           <div class="form-field">
+              <label for="">Email</label>
+              <input type="text" placeholder="adalberto12@gmail.com">
+           </div>
+
+           <div class="form-field">
+              <label for="">Tipo</label>
+              <input type="text" placeholder="'E' ou C'" class="input-type-user">
+           </div>
+        </form>
+
+        <button class="large-button">
+          <p>Criar</p>
+        </button>
+      </div>
+
+      <div class="tab-content" id="tab2">
+        
+         <form action="">
+
+          <div class="form-field">
+            <label for="">Nome</label>
+            <input type="text" placeholder="Adalberto Silveira">
+          </div>
+          <div class="form-field">
+            <label for="">Nome</label>
+            <input type="text" placeholder="Adalberto Silveira">
+          </div>
+
+          <div class="form-field">
+            <label for="">Email</label>
+            <input type="text" placeholder="adalberto12@gmail.com">
+          </div>
+
+          <div class="form-field">
+            <label for="">Tipo</label>
+            <input type="text" placeholder="'E' ou C'" class="input-type-user">
+          </div>
+        </form>
+        <button class="large-button">
+          <p>Criar</p>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/scripts/cadastro-usarios.js"></script>
+
+</body>
+</html>
