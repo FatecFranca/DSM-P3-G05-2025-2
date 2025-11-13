@@ -50,61 +50,62 @@
       
       <div class="tab-content active" id='tab1'>
       
-        <form class=" " >
+        <form class="" >
 
           <div class="form-field">
             <label for="">Nome Fantasia</label>
-            <input type="text" placeholder="Bar do Zé" name="" id="input-nome-fantasia">
+            <input class="register" type="text" placeholder="Bar do Zé" name="" id="input-nome-fantasia">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Abertura</label>
-            <input type="text" placeholder="12:00" name="" id="input-openning-hour">
+            <input class="register" type="text" placeholder="12:00" name="" id="input-openning-hour">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Fechamento</label>
-            <input type="text" placeholder="3:30" name="" id="input-closing-hour">
+            <input class="register" type="text" placeholder="3:30" name="" id="input-closing-hour">
+          </div>
+
+          <div class="form-field">
+            <label for="">Categoria</label>
+            <input class="register" type="text" placeholder="Restaurante" name="" id="input-categoria">
           </div>
 
           <div class="form-field">
             <label for="">Tags</label>
-            <input type="text" placeholder="bar, restaurante, drinks" name="" id="tags">
+            <input class="register" type="text" placeholder="Música ao vivo, drinks, porções" name="" id="input-tags">
           </div>
 
           <div class="form-field">
             <label for="">Rua</label>
-            <input type="text" placeholder="Avenida dos palmares " name="" id="input-street">
+            <input class="register" type="text" placeholder="Avenida dos palmares " name="" id="input-street">
           </div>
 
           <div class="form-field">
             <label for="">Número</label>
-            <input type="text" placeholder="888" name="" id="input-street-number">
+            <input class="register" type="text" placeholder="888" name="" id="input-street-number">
           </div>
           
           <div class="form-field">
             <label for="">Número de telefone</label>
-            <input type="text" placeholder="(16) 99685-5621" name="" id="input-phone-number">
+            <input class="register" type="text" placeholder="(16) 99685-5621" name="" id="input-phone-number">
           </div>
 
           <div class="form-field">
               <label for="">Razão Social</label>
-              <input type="text" placeholder="Bar do Zé LTDA." name="" id="input-razao-social">
+              <input class="register" type="text" placeholder="Bar do Zé LTDA." name="" id="input-razao-social">
             </div>
 
             <div class="form-field">
               <label for="">CNPJ</label>
-              <input type="text" placeholder="96.752.874/0001-74" name="" id="input-cnpj">
+              <input class="register" type="text" placeholder="96.752.874/0001-74" name="" id="input-cnpj">
             </div>
 
-            <div class="form-field">
-              <label for="">Nome Completo Proprietário</label>
-              <input type="text" placeholder="João Alberto de Jesus" name="" id="input-full-owner-name">
-            </div>
 
             <div class="form-field">
               <label for="">CPF do proprietário</label>
-              <input type="text" placeholder="185.269.852/25" name="" id="input-owner-cpf">
+              <input class="register" type="text" placeholder="185.269.852/25" name="" id="input-owner-cpf">
             </div>
          
         </form>
@@ -118,66 +119,56 @@
 
           <div class="form-field">
             <label for="">Id</label>
-            <input type="text" placeholder="5" name="" class="input-id">
+            <input type="text" placeholder="5" name="id-update" class="input-id">
           </div>
 
-          <button class="large-button" id="edit-id-button">
+          <button class="large-button" id="edit-id-button" name="search-update-btt">
             <p>buscar</p>
           </button>
 
           <div class="form-field">
             <label for="">Nome Fantasia</label>
-            <input type="text" placeholder="Bar do Zé" name="" id="input-nome-fantasia">
+            <input type="text" placeholder="Bar do Zé" name="place_name" id="input-nome-fantasia" class="update">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Abertura</label>
-            <input type="text" placeholder="12:00" name="" id="input-openning-hour">
+            <input type="text" placeholder="12:00" name="opening_hours" id="input-openning-hour" class="update">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Fechamento</label>
-            <input type="text" placeholder="3:30" name="" id="input-closing-hour">
+            <input type="text" placeholder="3:30" name="closing_hours" id="input-closing-hour" class="update">
           </div>
 
           <div class="form-field">
             <label for="">Tags</label>
-            <input type="text" placeholder="bar, restaurante, drinks" name="" id="tags">
+            <input type="text" placeholder="bar, restaurante, drinks" name="tags" id="tags" class="update">
           </div>
 
           <div class="form-field">
             <label for="">Rua</label>
-            <input type="text" placeholder="Avenida dos palmares " name="" id="input-street">
+            <input type="text" placeholder="Avenida dos palmares " name="street" id="input-street" class="update">
           </div>
 
           <div class="form-field">
             <label for="">Número</label>
-            <input type="text" placeholder="888" name="" id="input-street-number">
+            <input type="text" placeholder="888" name="street_number" id="input-street-number" class="update">
           </div>
           
           <div class="form-field">
             <label for="">Número de telefone</label>
-            <input type="text" placeholder="(16) 99685-5621" name="" id="input-phone-number">
+            <input type="text" placeholder="(16) 99685-5621" name="phone_number" id="input-phone-number" class="update">
           </div>
 
           <div class="form-field">
               <label for="">Razão Social</label>
-              <input type="text" placeholder="Bar do Zé LTDA." name="" id="input-razao-social">
+              <input type="text" placeholder="Bar do Zé LTDA." name="razao_social" id="input-razao-social" class="update">
             </div>
 
             <div class="form-field">
               <label for="">CNPJ</label>
-              <input type="text" placeholder="96.752.874/0001-74" name="" id="input-cnpj">
-            </div>
-
-            <div class="form-field">
-              <label for="">Nome Completo Proprietário</label>
-              <input type="text" placeholder="João Alberto de Jesus" name="" id="input-full-owner-name">
-            </div>
-
-            <div class="form-field">
-              <label for="">CPF do proprietário</label>
-              <input type="text" placeholder="185.269.852/25" name="" id="input-owner-cpf">
+              <input type="text" placeholder="96.752.874/0001-74" name="cnpj" id="input-cnpj" class="update">
             </div>
          
         </form>

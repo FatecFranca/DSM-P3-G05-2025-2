@@ -1,7 +1,6 @@
 const express = require('express');
 
 const errorHandler = require('./middlewares/errorHandler');
-
 // Rotas
 const categoryRoutes = require('./routes/categoryRoutes');
 
