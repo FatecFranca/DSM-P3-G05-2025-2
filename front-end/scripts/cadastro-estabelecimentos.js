@@ -84,17 +84,25 @@ async function fetchAndFillEstabelecimento(id) {
     // Preenche os campos na aba de edição (#tab2)
     const inputs = document.querySelectorAll('#tab2 .update');
     inputs.forEach(input => {
-      const key = input.getAttribute('name');
+      const rawKey = input.getAttribute('name') || '';
+      const key = rawKey.endsWith('-update')
+        ? rawKey.replace(/-update$/, '')
+        : rawKey;
+      const normalizedKey = key.replace(/-/g, '_');
       let value = null;
 
       // Resolve valor a partir do topo ou subdocumentos conhecidos
-      if (key === 'tags' && Array.isArray(data.tags)) {
+      if (normalizedKey === 'tags' && Array.isArray(data.tags)) {
         value = data.tags.join(', ');
-      } else if (data[key] !== undefined && data[key] !== null) {
-        value = data[key];
-      } else if (data.infoPrivPlace && (data.infoPrivPlace[key] !== undefined && data.infoPrivPlace[key] !== null)) {
-        value = data.infoPrivPlace[key];
-      } else if (key === 'category_title' && data.category && data.category.title) {
+      } else if (data[normalizedKey] !== undefined && data[normalizedKey] !== null) {
+        value = data[normalizedKey];
+      } else if (
+        data.infoPrivPlace &&
+        data.infoPrivPlace[normalizedKey] !== undefined &&
+        data.infoPrivPlace[normalizedKey] !== null
+      ) {
+        value = data.infoPrivPlace[normalizedKey];
+      } else if (normalizedKey === 'category_title' && data.category && data.category.title) {
         value = data.category.title;
       }
 
@@ -112,6 +120,83 @@ async function fetchAndFillEstabelecimento(id) {
   } catch (err) {
     console.error('Erro ao buscar estabelecimento:', err);
     alert(`Erro ao buscar: ${err.message || err}`);
+  }
+}
+
+// ===== Atualização de estabelecimento (PUT /estabelecimentos/:id) =====
+async function updateEstabelecimento() {
+  const idInput = document.querySelector('#tab2 input[name="id-update"]');
+  const id = idInput ? idInput.value.trim() : '';
+  if (!id) {
+    alert('Informe o ID do estabelecimento antes de editar.');
+    return;
+  }
+
+  const inputs = document.querySelectorAll('#tab2 [data-update]');
+  const keyMap = {
+    'nome-fantasia': 'place_name',
+    'openning-hour': 'opening_hours',
+    'closing-hour': 'closing_hours',
+    'tags': 'tags',
+    'street': 'street',
+    'street-number': 'street_number',
+    'phone-number': 'phone_number',
+    'razao-social': 'razao_social',
+    'owner-cpf': 'owner_cpf',
+    'cnpj': 'cnpj',
+    'category-title': 'category_title'
+  };
+
+  const payload = {};
+  for (const input of inputs) {
+    const rawKey = input.dataset.update;
+    if (!rawKey) continue;
+    const apiKey = keyMap[rawKey] || rawKey.replace(/-/g, '_');
+    const value = input.value.trim();
+    if (!value) continue;
+
+    if (apiKey === 'tags') {
+      const tags = value
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(Boolean);
+      if (tags.length) {
+        payload.tags = tags;
+      }
+      continue;
+    }
+
+    if (apiKey === 'owner_cpf') {
+      payload[apiKey] = value.replace(/\D/g, '');
+      continue;
+    }
+
+    payload[apiKey] = value;
+  }
+
+  if (Object.keys(payload).length === 0) {
+    alert('Preencha ao menos um campo para atualizar.');
+    return;
+  }
+
+  try {
+    const url = `http://localhost:3000/estabelecimentos/${encodeURIComponent(id)}`;
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data?.message || `Erro ${res.status}`);
+    }
+
+    alert('Estabelecimento atualizado com sucesso!');
+    console.log('Atualização realizada:', data);
+  } catch (err) {
+    console.error('Erro ao atualizar estabelecimento:', err);
+    alert(`Erro ao atualizar: ${err?.message || err}`);
   }
 }
 
@@ -327,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       
-      const idInput = document.querySelector('input[name="id-update"]');
+      const idInput = document.querySelector('#tab2 input[name="id-update"]');
       const id = idInput ? idInput.value.trim() : null;
       
       btnSearch.disabled = true;
@@ -335,6 +420,21 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchAndFillEstabelecimento(id);
       } finally {
         btnSearch.disabled = false;
+      }
+    });
+  }
+
+  // Listener do botão "Editar" (aba 2)
+  const btnUpdate = document.getElementById('update-button');
+  if (btnUpdate) {
+    btnUpdate.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      btnUpdate.disabled = true;
+      try {
+        await updateEstabelecimento();
+      } finally {
+        btnUpdate.disabled = false;
       }
     });
   }

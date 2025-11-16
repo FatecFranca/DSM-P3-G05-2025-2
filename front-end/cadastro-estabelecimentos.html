@@ -117,63 +117,69 @@
       <div class="tab-content" id="tab2">
          <form class=" " >
 
-          <div class="form-field">
-            <label for="">Id</label>
-            <input type="text" placeholder="5" name="id-update" class="input-id">
+          <div class="form-field id-search-field">
+            <label for="input-id-update">Id</label>
+            <div class="id-search-controls">
+              <input data-update="id" type="text" placeholder="5" id="input-id-update" class="input-id" name="id-update">
+              <button type="button" class="large-button" id="edit-id-button" name="search-update-btt">
+                <p>Buscar</p>
+              </button>
+            </div>
           </div>
-
-          <button class="large-button" id="edit-id-button" name="search-update-btt">
-            <p>buscar</p>
-          </button>
 
           <div class="form-field">
             <label for="">Nome Fantasia</label>
-            <input type="text" placeholder="Bar do Zé" name="place_name" id="input-nome-fantasia" class="update">
+            <input type="text" data-update="nome-fantasia" placeholder="Bar do Zé" id="input-nome-fantasia" class="update" name="place_name-update">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Abertura</label>
-            <input type="text" placeholder="12:00" name="opening_hours" id="input-openning-hour" class="update">
+            <input data-update="openning-hour" type="text" placeholder="12:00" id="input-openning-hour" class="update" name="opening_hours-update">
           </div>
 
           <div class="form-field">
             <label for="">Horário - Fechamento</label>
-            <input type="text" placeholder="3:30" name="closing_hours" id="input-closing-hour" class="update">
+            <input data-update="closing-hour" type="text" placeholder="3:30" id="input-closing-hour" class="update" name="closing_hours-update">
           </div>
 
           <div class="form-field">
             <label for="">Tags</label>
-            <input type="text" placeholder="bar, restaurante, drinks" name="tags" id="tags" class="update">
+            <input data-update="tags" type="text" placeholder="bar, restaurante, drinks" id="input-tags" class="update" name="tags-update">
           </div>
 
           <div class="form-field">
             <label for="">Rua</label>
-            <input type="text" placeholder="Avenida dos palmares " name="street" id="input-street" class="update">
+            <input data-update="street" type="text" placeholder="Avenida dos palmares" id="input-street" class="update" name="street-update">
           </div>
 
           <div class="form-field">
             <label for="">Número</label>
-            <input type="text" placeholder="888" name="street_number" id="input-street-number" class="update">
+            <input data-update="street-number" type="text" placeholder="888" id="input-street-number" class="update" name="street_number-update">
           </div>
           
           <div class="form-field">
             <label for="">Número de telefone</label>
-            <input type="text" placeholder="(16) 99685-5621" name="phone_number" id="input-phone-number" class="update">
+            <input data-update="phone-number" type="text" placeholder="(16) 99685-5621" id="input-phone-number" class="update" name="phone_number-update">
           </div>
 
           <div class="form-field">
               <label for="">Razão Social</label>
-              <input type="text" placeholder="Bar do Zé LTDA." name="razao_social" id="input-razao-social" class="update">
+              <input data-update="razao-social" type="text" placeholder="Bar do Zé LTDA." id="input-razao-social" class="update" name="razao_social-update">
             </div>
+
+            <!-- <div class="form-field">
+              <label for="">CPF do proprietário</label>
+              <input data-update="owner-cpf" type="text" placeholder="122.556.198/63" id="input-owner-cpf" class="update" name="cpf-owner-update">
+            </div> -->
 
             <div class="form-field">
               <label for="">CNPJ</label>
-              <input type="text" placeholder="96.752.874/0001-74" name="cnpj" id="input-cnpj" class="update">
+              <input data-update="cnpj" type="text" placeholder="96.752.874/0001-74" id="input-cnpj" class="update" name="cnpj-update">
             </div>
          
         </form>
         
-        <button id="create-button" class="large-button">
+        <button id="update-button" class="large-button">
           <p>Editar</p>
         </button>
       </div>
