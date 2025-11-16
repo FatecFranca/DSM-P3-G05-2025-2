@@ -14,6 +14,7 @@ main{
     margin: auto;
     border-radius: 1rem;
     padding: 1.5%;
+    transition: height 220ms ease;
 
     nav{
       border: solid 2px green;
@@ -70,13 +71,97 @@ main{
           .input-type-user{
             width: 80px;
           }
+          .input-id-user{
+            width: 60px;
+          }
         }
+        /* Campo ID com botão Buscar na mesma linha */
+        #id-search-field{
+          /* border: solid 2px blue; */
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          flex-wrap: nowrap;
+        }
+        #id-search-field label{
+          flex-shrink: 0;
+        }
+        #id-search-field .search-button{
+          height: 35px;
+          width: 75px;
+          /* padding: 0 1rem; */
+          background-color: var(--primary-color);
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        /* #id-search-field .search-button:hover{
+          background-color: #5F00A3;
+        } */
+        #id-search-field .search-button:active{
+          background-color: #5F00A3;
+          box-sizing: border-box;
+          padding:  0.5rem ;
+        }
+
+        /* Radios de tipo lado a lado */
+        #user-type-group{
+          display: flex;
+          flex-direction: row;
+          gap: 0.75rem;
+          align-items: center;
+          flex-wrap: wrap;
+          margin-top: 0.25rem;
+        }
+        #user-type-group label{
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--primary-color);
+          cursor: pointer;
+          user-select: none;
+        }
+        #user-type-group input[type="radio"]{
+          accent-color: var(--primary-color);
+          cursor: pointer;
+        }
+
+        /* Campos extras (telefone / cpf) quando tipo = O */
+        #extra-user-fields{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-top: 0.25rem;
+        }
+        #extra-user-fields .form-field{
+          flex: 1 1 100%;
+        }
+        #extra-user-fields .form-field input{
+          width: 100%;
+        }
+      }
+      #register-button{
+          /* border: solid 2px blue; */
+          margin: 10px;
+      }
+      #send-update-button{
+          /* border: solid 2px blue; */
+          margin: 10px;
       }
     }
     .tab-content.active{
       display: flex;
       justify-content: center;
       flex-flow: row wrap;
+    }
+    &.expanded{
+      height: 540px; /* espaço extra quando tipo O selecionado */
     }
   }  
 }

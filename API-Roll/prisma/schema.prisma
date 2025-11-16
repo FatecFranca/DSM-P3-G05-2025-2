@@ -18,7 +18,7 @@ datasource db {
 model Category {
   id     String  @id @default(auto()) @map("_id") @db.ObjectId
   title  String  @unique
-  // places Place[]
+  places Place[]
 }
 
 model Place {

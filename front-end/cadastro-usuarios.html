@@ -54,35 +54,41 @@
       </nav>
 
       <div class="tab-content active" id="tab1">
-        <form action="">
+        <form action="" id="create-user-form">
            <div class="form-field">
               <label for="">Nome</label>
-              <input type="text" placeholder="Adalberto Silveira">
+            <input type="text" placeholder="Adalberto Silveira" id="user-name">
            </div>
 
            <div class="form-field">
               <label for="">Email</label>
-              <input type="text" placeholder="adalberto12@gmail.com">
+            <input type="text" placeholder="adalberto12@gmail.com" id="user-email">
            </div>
 
            <div class="form-field">
-              <label for="">Tipo</label>
-              <input type="text" placeholder="'E' ou C'" class="input-type-user">
+            <label for="">Tipo</label>
+            <div id="user-type-group">
+             <label><input type="radio" name="user-type" value="C" checked> C</label>
+             <label><input type="radio" name="user-type" value="O"> O</label>
+            </div>
            </div>
+
+          <div id="extra-user-fields"></div>
         </form>
 
-        <button class="large-button">
-          <p>Criar</p>
+        <button id="register-button" name="button-register" class="large-button">
+          <p>Cadastrar</p>
         </button>
       </div>
 
       <div class="tab-content" id="tab2">
         
-         <form action="">
+         <form action="" id="edit-user-form">
 
-          <div class="form-field">
-            <label for="">Nome</label>
-            <input type="text" placeholder="Adalberto Silveira">
+          <div class="form-field" id="id-search-field">
+            <label for="">ID</label>
+            <input type="text" placeholder="123" id="edit-user-id" class="input-id-user">
+            <button type="button" class="search-button">Buscar</button>
           </div>
           <div class="form-field">
             <label for="">Nome</label>
@@ -94,13 +100,9 @@
             <input type="text" placeholder="adalberto12@gmail.com">
           </div>
 
-          <div class="form-field">
-            <label for="">Tipo</label>
-            <input type="text" placeholder="'E' ou C'" class="input-type-user">
-          </div>
         </form>
-        <button class="large-button">
-          <p>Criar</p>
+        <button id="send-update-button" class="large-button">
+          <p>Enviar</p>
         </button>
       </div>
     </div>
