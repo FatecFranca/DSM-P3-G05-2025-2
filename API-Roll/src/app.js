@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-
 const errorHandler = require('./middlewares/errorHandler');
+const ApiError = require('./utils/ApiError');
 
 // Rotas
 const categoryRoutes = require('./routes/categoryRoutes');
 const placeRoutes = require('./routes/placeRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 
 const app = express();
 app.use(express.json());
@@ -35,6 +37,7 @@ app.use(cors(corsOptions));
 app.use('/categories', categoryRoutes);
 app.use('/estabelecimentos', placeRoutes);
 app.use('/comments', commentRoutes);
+app.use('/users', userRoutes);
 
 // Middleware de tratamento de erros
 app.use(errorHandler);

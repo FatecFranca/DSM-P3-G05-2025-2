@@ -60,3 +60,17 @@ model Comment {
   place    Place  @relation(fields: [place_id], references: [id])
   place_id String @db.ObjectId
 }
+
+model User {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  user_email   String   @unique
+  phone_number String?
+  type_user    String // "C" para Client, "O" para Owner
+  cpf          String?  @unique
+  cnpj_owner   String[]
+
+  owned_places InfosPrivPlace[]
+  comments     Comment[]
+}
+
