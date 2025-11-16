@@ -50,4 +50,13 @@ model InfosPrivPlace {
   owner_id String @db.ObjectId
 }
 
+model Comment {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  content String
 
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String @db.ObjectId
+
+  place    Place  @relation(fields: [place_id], references: [id])
+  place_id String @db.ObjectId
+}

@@ -6,6 +6,7 @@ const errorHandler = require('./middlewares/errorHandler');
 // Rotas
 const categoryRoutes = require('./routes/categoryRoutes');
 const placeRoutes = require('./routes/placeRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 const app = express();
 app.use(express.json());
@@ -33,7 +34,9 @@ app.use(cors(corsOptions));
 // Usar rotas
 app.use('/categories', categoryRoutes);
 app.use('/estabelecimentos', placeRoutes);
+app.use('/comments', commentRoutes);
 
+// Middleware de tratamento de erros
 app.use(errorHandler);
 
 module.exports = app;
