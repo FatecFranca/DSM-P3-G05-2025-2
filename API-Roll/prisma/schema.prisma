@@ -20,3 +20,34 @@ model Category {
   title  String  @unique
   // places Place[]
 }
+
+model Place {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  place_name    String
+  opening_hours String
+  closing_hours String
+  tags          String[]
+  street        String
+  street_number String
+  phone_number  String
+
+  category    Category         @relation(fields: [category_id], references: [id])
+  category_id String           @db.ObjectId
+
+  infoPrivPlace InfosPrivPlace?
+  comments      Comment[]
+}
+
+model InfosPrivPlace {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  razao_social String
+  cnpj         String @unique
+
+  place    Place  @relation(fields: [place_id], references: [id])
+  place_id String @unique @db.ObjectId
+
+  owner    User   @relation(fields: [owner_id], references: [id])
+  owner_id String @db.ObjectId
+}
+
+
