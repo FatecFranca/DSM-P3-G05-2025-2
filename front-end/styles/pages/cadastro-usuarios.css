@@ -17,7 +17,7 @@ main{
     transition: height 220ms ease;
 
     nav{
-      border: solid 2px green;
+      /* border: solid 2px green; */
       display: flex;
       gap: 0.5rem;
       align-items: center;
@@ -46,7 +46,7 @@ main{
     }
     .tab-content{
       display: none;
-      border: solid 2px red;
+      /* border: solid 2px red; */
       active{
         display: flex;
         justify-content: center;
