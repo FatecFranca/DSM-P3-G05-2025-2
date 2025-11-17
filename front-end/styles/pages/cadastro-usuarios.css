@@ -145,6 +145,69 @@ main{
         #extra-user-fields .form-field input{
           width: 100%;
         }
+
+        /* Campo de exclusão na aba 3 */
+        #delete-field{
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: nowrap;
+        }
+        #delete-field label{
+          flex-shrink: 0;
+        }
+        #delete-field .danger-button{
+          height: 35px;
+          padding: 0 1rem;
+          background-color: #F00202;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        #delete-field .danger-button:active{
+          background-color: #bb0000;
+        }
+
+        /* Campos dinâmicos na aba de edição */
+        #edit-type-field{
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        #edit-type-field .user-type-group{
+          display: flex;
+          flex-direction: row;
+          gap: 0.75rem;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+        #edit-type-field .user-type-group label{
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 16px;
+          font-weight: 600;
+          color: var(--primary-color);
+        }
+        #edit-type-field .user-type-group input[type="radio"]{
+          accent-color: var(--primary-color);
+          cursor: default;
+        }
+        #edit-extra-user-fields{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-top: 0.25rem;
+        }
+        #edit-extra-user-fields .form-field{
+          flex: 1 1 100%;
+        }
+        #edit-extra-user-fields .form-field input{
+          width: 50%;
+        }
       }
       #register-button{
           /* border: solid 2px blue; */
@@ -161,7 +224,31 @@ main{
       flex-flow: row wrap;
     }
     &.expanded{
-      height: 540px; /* espaço extra quando tipo O selecionado */
+      position: relative;
+      top: 1.5rem;
+      height: 560px; /* espaço extra quando tipo O selecionado */
+    }
+    &.compact{
+      height: 220px;
+      width: 320px;
+
+      .tab-content{
+        padding-top: 1.5rem;
+      }
+      #tab3{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form{
+          width: auto;
+        }
+
+        #delete-field{
+          justify-content: center;
+        }
+      }
     }
   }  
 }

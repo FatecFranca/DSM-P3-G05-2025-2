@@ -87,23 +87,36 @@
 
           <div class="form-field" id="id-search-field">
             <label for="">ID</label>
-            <input type="text" placeholder="123" id="edit-user-id" class="input-id-user">
+            <input data-update="id" type="text" placeholder="123" id="edit-user-id" class="input-id-user">
             <button type="button" class="search-button">Buscar</button>
           </div>
           <div class="form-field">
             <label for="">Nome</label>
-            <input type="text" placeholder="Adalberto Silveira">
+            <input data-update="name" type="text" placeholder="Adalberto Silveira">
           </div>
 
           <div class="form-field">
             <label for="">Email</label>
-            <input type="text" placeholder="adalberto12@gmail.com">
+            <input data-update="email" type="text" placeholder="adalberto12@gmail.com">
           </div>
+
+          <div class="form-field" id="edit-type-field"></div>
+          <div id="edit-extra-user-fields"></div>
 
         </form>
         <button id="send-update-button" class="large-button">
           <p>Enviar</p>
         </button>
+      </div>
+
+      <div class="tab-content" id="tab3">
+        <form action="" id="delete-user-form">
+          <div class="form-field" id="delete-field">
+            <label for="delete-user-id">ID</label>
+            <input type="text" id="delete-user-id" class="input-id-user" placeholder="123" data-delete="id">
+            <button type="button" class="danger-button" id="exclude-button">Excluir</button>
+          </div>
+        </form>
       </div>
     </div>
 

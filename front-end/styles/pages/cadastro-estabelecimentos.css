@@ -58,7 +58,7 @@
     justify-content: center;
     align-items:space-between;
     form{
-      border: solid 2px blue ;
+      /* border: solid 2px blue ; */
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
@@ -67,7 +67,7 @@
         background-color: #F00202;
       }
       .form-field{
-        border: solid 2px red;
+        /* border: solid 2px red; */
         
         label{
           display: block;
