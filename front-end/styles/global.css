@@ -12,7 +12,7 @@
   --text-color-detail: #00FF11;
 
   --font-family: "Righteous";
-  --h1: 800 24px/135% var(--font-family);
+  --h1: 800 20px/135% var(--font-family);
   --h2: 800 16px/140% var(--font-family);
   --h3: 800 14px/140% var(--font-family);
   --text: 400 16px/140% var(--font-family);
@@ -20,7 +20,7 @@
 }
 
 body{
-  font:var(--text);
+  font: var(--text);
   background-color: var(--primary-color);
   color: black;
 }
@@ -48,9 +48,14 @@ input{
 }
 
 h1, h2, h3, label{
-font: inherit;
+/* font: inherit; */
 }
-
+h1{
+  font: var(--h1);
+}
+h2{
+  font: var(--h2);
+}
 button{
   border: none;
   color: white;

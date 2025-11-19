@@ -1,0 +1,51 @@
+@import url('../global.css');
+
+:root {
+  --page-bg: #f8f9fa;
+  --page-title-color: #9775da;
+}
+
+body {
+  background-color: var(--page-bg);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #2d3748;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  padding-top: 12vh; /* Compensar header fixo (9vh) + espaçamento */
+  min-height: 80vh;
+}
+
+#div-title-places {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--page-title-color);
+  padding-bottom: 1rem;
+}
+
+#div-title-places h1 {
+  font-family: 'Righteous', cursive;
+  color: var(--page-title-color);
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+#establishments-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.no-results, .loading-message, .error-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #718096;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}

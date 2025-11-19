@@ -56,6 +56,67 @@ function openTab(tabId, event) {
   }
 }
 
+function onlyDigits(value) {
+  return (value || '').replace(/\D/g, '');
+}
+
+function formatPhone(value) {
+  const digits = onlyDigits(value).slice(0, 11);
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+
+  if (!digits.length) return '';
+  if (digits.length <= 2) return `(${digits}`;
+  if (digits.length <= 6) return `(${ddd}) ${rest}`;
+  if (digits.length <= 10) {
+    return `(${ddd}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  }
+  return `(${ddd}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
+
+function formatCPF(value) {
+  const digits = onlyDigits(value).slice(0, 11);
+  const p1 = digits.slice(0, 3);
+  const p2 = digits.slice(3, 6);
+  const p3 = digits.slice(6, 9);
+  const p4 = digits.slice(9, 11);
+
+  let out = p1;
+  if (p2) out += `.${p2}`;
+  if (p3) out += `.${p3}`;
+  if (p4) out += `-${p4}`;
+  return out || '';
+}
+
+function attachMask(input, formatter, maxLength) {
+  if (!input || input.dataset.maskAttached === 'true') return;
+
+  const handler = (event) => {
+    const target = event.target;
+    if (target) {
+      target.value = formatter(target.value);
+    }
+  };
+
+  input.addEventListener('input', handler);
+  input.addEventListener('blur', handler);
+  if (maxLength) {
+    input.setAttribute('maxlength', String(maxLength));
+  }
+  input.dataset.maskAttached = 'true';
+  input.value = formatter(input.value);
+}
+
+function applyCreateMasks() {
+  attachMask(document.getElementById('user-phone'), formatPhone, 16);
+  attachMask(document.getElementById('user-cpf'), formatCPF, 14);
+}
+
+function applyEditMasks() {
+  attachMask(document.getElementById('edit-user-phone'), formatPhone, 16);
+  attachMask(document.getElementById('edit-user-cpf'), formatCPF, 14);
+}
+
 // ===== Campos dinâmicos para criação de usuário =====
 document.addEventListener('DOMContentLoaded', () => {
   const typeRadios = document.querySelectorAll('input[name="user-type"]');
@@ -73,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cpfField.innerHTML = `\n        <label for="user-cpf">CPF</label>\n        <input type="text" id="user-cpf" placeholder="123.456.789-10">\n      `;
       extraContainer.appendChild(phoneField);
       extraContainer.appendChild(cpfField);
+      applyCreateMasks();
       if (menu) menu.classList.add('expanded');
     } else if (menu) {
       menu.classList.remove('expanded');
@@ -282,6 +344,7 @@ function renderEditTypeFields(typeUser, data) {
 
     extraContainer.appendChild(phoneField);
     extraContainer.appendChild(cpfField);
+    applyEditMasks();
   } else {
     if (menu) {
       menu.classList.remove('expanded');

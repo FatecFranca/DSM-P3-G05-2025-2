@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/componentes/header.css">
+  <link rel="stylesheet" href="./styles/componentes/card-exibicao-estab.css">
+  <link rel="stylesheet" href="./styles/pages/estabelecimentos.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
+  <script src="./scripts/search-handler.js" defer></script>
+  <script src="./scripts/estabelecimentos.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estabelecimentos</title>
+</head>
+<body>
+  <header>
+    <img src="./images/Logo.png" alt="Rota Local" id="header-logo">
+    
+    <form id="div-search-bar" data-js="search-form" action="">
+      <input data-js="search" class="search-input" placeholder="Busque lugares...">
+      <button type="submit" id="button-search-bar">
+        <img id="lupa" src="./icons/lupa.svg" alt="Buscar">
+      </button>
+    </form>
+
+    <nav>
+      <div class="nav-options"><a href="index.html">Home</a></div> 
+      <div class="nav-options"><a href="#">Eventos</a></div>
+      <div class="nav-options"><a href="estabelecimentos.html" class="active">Estabelecimentos</a></div>
+      <div class="nav-options"><a href="#">Contato</a></div>
+
+      <button id="button-login"><a href="#">Login</a></button>
+
+      <a id="account-circle" href="#"><img src="./icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt="Perfil"></a>
+    </nav>
+  </header>
+  <main>
+    <div id="div-title-places">
+       <h1 >Estabelecimentos</h1>
+    </div>
+
+    <div id="establishments-list">
+      
+    </div>  
+  </main>
+</body>
+</html>

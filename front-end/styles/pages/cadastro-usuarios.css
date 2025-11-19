@@ -1,255 +1,312 @@
-main{
+@import url('../global.css');
+@import url('../componentes/header.css');
+
+:root {
+  --form-bg: #ffffff;
+  --page-bg: #f8f9fa;
+  --input-border: #e2e8f0;
+  --input-focus: #9775da;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --danger: #e53e3e;
+  --success: #48bb78;
+  --radius: 1rem;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --primary-gradient: linear-gradient(135deg, #9775da 0%, #7b5ac0 100%);
+}
+
+body {
+  background-color: #4b0081; /* Fundo roxo escuro para contraste */
+  background-image: linear-gradient(135deg, #4b0081 0%, #2d004d 100%); /* Gradiente sutil */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  padding-top: 12vh; /* Compensar header fixo */
+}
+
+/* --- Container Principal (Card) --- */
+#menu {
+  background-color: rgba(255, 255, 255, 0.95); /* Branco com leve transparência */
+  backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2); /* Sombra mais forte */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   display: flex;
-  height: 100vh;
-  width: 100vw;
-  /* border: solid 1px green; */
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Altura automática por padrão, ajustada pelo conteúdo */
+  height: auto;
+  min-height: 450px;
+}
 
-  #menu{
-    height: 430px;
-    width: 400px;
-    display: flex;
-    flex-flow: column nowrap;
-    background-color: #c7c7c7;
-    margin: auto;
-    border-radius: 1rem;
-    padding: 1.5%;
-    transition: height 220ms ease;
+/* Classe para expandir o menu (usada via JS) */
+#menu.expanded {
+  min-height: 550px;
+}
 
-    nav{
-      /* border: solid 2px green; */
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
+#menu.compact {
+  min-height: 300px;
+}
 
-      button{
-        box-sizing: content-box;
-        border-radius: 4px;
-        padding: 5px;
-        margin-top: 6px;
-        margin-bottom: 6px;
-        background-color: #c7c7c7;
-        color: var(--primary-color);
-        border: solid 2px var(--primary-color);
+/* --- Cabeçalho das Abas --- */
+#menu nav {
+  display: flex;
+  background-color: #f8fafc;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--input-border);
+}
 
-        &:hover{
-          padding: 6px;
-          background-color: #9300FF;
-          color: white;
-        }
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
 
-        &.active{
-          background-color: var(--secondary-color);
-          color: white;
-        }
-      }
-    }
-    .tab-content{
-      display: none;
-      /* border: solid 2px red; */
-      active{
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-      }
-      form{
-        display: flex;
-        flex-flow: column wrap;
-        gap: 1rem;
-        width: 100%;
-        .form-field{
-          label{
-            display: block;
-            font-size: 18px;
-            color: var(--primary-color);
-          }
-          input{
-            height: 35px;
-            padding: 3px;
-          }
+.tab-button p {
+  margin: 0;
+  pointer-events: none;
+}
 
-          .input-type-user{
-            width: 80px;
-          }
-          .input-id-user{
-            width: 60px;
-          }
-        }
-        /* Campo ID com botão Buscar na mesma linha */
-        #id-search-field{
-          /* border: solid 2px blue; */
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          flex-wrap: nowrap;
-        }
-        #id-search-field label{
-          flex-shrink: 0;
-        }
-        #id-search-field .search-button{
-          height: 35px;
-          width: 75px;
-          /* padding: 0 1rem; */
-          background-color: var(--primary-color);
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 600;
-          white-space: nowrap;
-        }
-        /* #id-search-field .search-button:hover{
-          background-color: #5F00A3;
-        } */
-        #id-search-field .search-button:active{
-          background-color: #5F00A3;
-          box-sizing: border-box;
-          padding:  0.5rem ;
-        }
+.tab-button:hover {
+  background-color: rgba(151, 117, 218, 0.1);
+  color: var(--input-focus);
+}
 
-        /* Radios de tipo lado a lado */
-        #user-type-group{
-          display: flex;
-          flex-direction: row;
-          gap: 0.75rem;
-          align-items: center;
-          flex-wrap: wrap;
-          margin-top: 0.25rem;
-        }
-        #user-type-group label{
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--primary-color);
-          cursor: pointer;
-          user-select: none;
-        }
-        #user-type-group input[type="radio"]{
-          accent-color: var(--primary-color);
-          cursor: pointer;
-        }
+.tab-button.active {
+  background-color: #ffffff;
+  color: var(--input-focus);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
 
-        /* Campos extras (telefone / cpf) quando tipo = O */
-        #extra-user-fields{
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-top: 0.25rem;
-        }
-        #extra-user-fields .form-field{
-          flex: 1 1 100%;
-        }
-        #extra-user-fields .form-field input{
-          width: 100%;
-        }
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--input-focus);
+  border-radius: 3px 3px 0 0;
+}
 
-        /* Campo de exclusão na aba 3 */
-        #delete-field{
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          flex-wrap: nowrap;
-        }
-        #delete-field label{
-          flex-shrink: 0;
-        }
-        #delete-field .danger-button{
-          height: 35px;
-          padding: 0 1rem;
-          background-color: #F00202;
-          color: #fff;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 600;
-        }
-        #delete-field .danger-button:active{
-          background-color: #bb0000;
-        }
+/* --- Conteúdo das Abas --- */
+.tab-content {
+  display: none;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.3s ease-out;
+}
 
-        /* Campos dinâmicos na aba de edição */
-        #edit-type-field{
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        #edit-type-field .user-type-group{
-          display: flex;
-          flex-direction: row;
-          gap: 0.75rem;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-        #edit-type-field .user-type-group label{
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--primary-color);
-        }
-        #edit-type-field .user-type-group input[type="radio"]{
-          accent-color: var(--primary-color);
-          cursor: default;
-        }
-        #edit-extra-user-fields{
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-top: 0.25rem;
-        }
-        #edit-extra-user-fields .form-field{
-          flex: 1 1 100%;
-        }
-        #edit-extra-user-fields .form-field input{
-          width: 50%;
-        }
-      }
-      #register-button{
-          /* border: solid 2px blue; */
-          margin: 10px;
-      }
-      #send-update-button{
-          /* border: solid 2px blue; */
-          margin: 10px;
-      }
-    }
-    .tab-content.active{
-      display: flex;
-      justify-content: center;
-      flex-flow: row wrap;
-    }
-    &.expanded{
-      position: relative;
-      top: 1.5rem;
-      height: 560px; /* espaço extra quando tipo O selecionado */
-    }
-    &.compact{
-      height: 220px;
-      width: 320px;
+.tab-content.active {
+  display: flex;
+}
 
-      .tab-content{
-        padding-top: 1.5rem;
-      }
-      #tab3{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        form{
-          width: auto;
-        }
+/* --- Formulários --- */
+#menu form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
 
-        #delete-field{
-          justify-content: center;
-        }
-      }
-    }
-  }  
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-left: 0.25rem;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="password"],
+.form-field input[type="number"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--input-border);
+  background-color: #fcfcfc;
+  font-size: 1rem;
+  transition: all 0.2s;
+  color: var(--text-primary);
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: var(--input-focus);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(151, 117, 218, 0.15);
+}
+
+.form-field input::placeholder {
+  color: #cbd5e0;
+}
+
+/* --- Radio Buttons (Tipo de Usuário) --- */
+#user-type-group,
+.user-type-group {
+  display: flex;
+  gap: 1rem;
+  background-color: #f1f5f9;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+}
+
+#user-type-group label,
+.user-type-group label {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+#user-type-group input[type="radio"],
+.user-type-group input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#user-type-group label:has(input:checked),
+.user-type-group label:has(input:checked) {
+  background-color: #ffffff;
+  color: var(--input-focus);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- Botões de Ação --- */
+button.large-button,
+button#register-button,
+button#edit-button,
+button#exclude-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background: var(--primary-gradient);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.large-button:hover,
+button#register-button:hover,
+button#edit-button:hover,
+button#exclude-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(151, 117, 218, 0.4);
+}
+
+button.large-button:active {
+  transform: translateY(0);
+}
+
+/* --- Botão de Busca (ID) --- */
+#id-search-field {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+#id-search-field .form-field {
+  flex: 1;
+}
+
+.search-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--text-primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 48px; /* Alinha com o input */
+  margin-bottom: 2px; /* Ajuste fino */
+}
+
+.search-button:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+/* --- Campos Extras Dinâmicos --- */
+#extra-user-fields,
+#edit-extra-user-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Ajustes Específicos para Tab Excluir --- */
+#tab3 {
+  text-align: center;
+}
+
+#tab3 .form-field {
+  text-align: left;
+}
+
+#exclude-button {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+}
+
+#exclude-button:hover {
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
 }
 
