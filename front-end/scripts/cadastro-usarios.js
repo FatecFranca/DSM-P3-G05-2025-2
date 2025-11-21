@@ -214,10 +214,10 @@ async function registerUser() {
   };
 
   if (typeUser === 'O') {
-    const phone = document.getElementById('user-phone')?.value || null;
-    const cpf = document.getElementById('user-cpf')?.value || null;
-    payload.phone_number = phone;
-    payload.cpf = cpf;
+    const phone = document.getElementById('user-phone')?.value || '';
+    const cpf = document.getElementById('user-cpf')?.value || '';
+    payload.phone_number = phone.replace(/\D/g, '') || null;
+    payload.cpf = cpf.replace(/\D/g, '') || null;
   }
 
   try {
@@ -328,22 +328,7 @@ function renderEditTypeFields(typeUser, data) {
     phoneField.appendChild(phoneLabel);
     phoneField.appendChild(phoneInput);
 
-    const cpfField = document.createElement('div');
-    cpfField.className = 'form-field';
-    const cpfLabel = document.createElement('label');
-    cpfLabel.setAttribute('for', 'edit-user-cpf');
-    cpfLabel.textContent = 'CPF';
-    const cpfInput = document.createElement('input');
-    cpfInput.type = 'text';
-    cpfInput.id = 'edit-user-cpf';
-    cpfInput.dataset.update = 'cpf';
-    cpfInput.placeholder = '123.456.789-10';
-    cpfInput.value = data?.cpf ?? '';
-    cpfField.appendChild(cpfLabel);
-    cpfField.appendChild(cpfInput);
-
     extraContainer.appendChild(phoneField);
-    extraContainer.appendChild(cpfField);
     applyEditMasks();
   } else {
     if (menu) {
@@ -384,6 +369,13 @@ async function updateUser() {
     payload.cpf = cpfInput.value.trim();
   }
 
+  // Garante que type_user não seja enviado
+  if ('type_user' in payload) {
+    delete payload.type_user;
+  }
+
+  console.log('Payload de atualização:', payload);
+
   if (Object.keys(payload).length === 0) {
     alert('Preencha ao menos um campo antes de enviar a atualização.');
     return;
@@ -399,7 +391,16 @@ async function updateUser() {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
+      let errorMsg = `Erro HTTP: ${response.status}`;
+      try {
+        const errData = await response.json();
+        console.error('Erro da API:', errData);
+        if (errData.message) errorMsg += `\n${errData.message}`;
+        else errorMsg += `\n${JSON.stringify(errData)}`;
+      } catch (e) { 
+        console.error('Erro ao ler resposta da API:', e);
+      }
+      throw new Error(errorMsg);
     }
 
     const data = await response.json().catch(() => ({}));

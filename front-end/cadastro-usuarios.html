@@ -13,31 +13,34 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
+  <script src="/scripts/search-handler.js" defer></script>
+  <script src="/scripts/cadastro-usarios.js" defer></script>
   <title>Roll</title>
 </head>
 <body>
+  <header>
+    <img src="/images/Logo.png" alt="" id="header-logo">
+    
+    <form id="div-search-bar" data-js="search-form" action="">
+      <input data-js="search" class="search-input" placeholder="Busque lugares...">
+      <button type="submit" id="button-search-bar">
+        <img id="lupa" src="/icons/lupa.svg" alt="">
+      </button>
+    </form>
+
+    <nav>
+      <div class="nav-options"><a href="index.html">Home</a></div> 
+      <div class="nav-options"><a href="">Eventos</a></div>
+      <div class="nav-options"><a href="">Estabelecimentos</a></div>
+      <div class="nav-options"><a href="">Contato</a></div>
+
+      <button id="button-login"><a href="">Login</a></button>
+
+      <a id="account-circle" href=""><img src="/icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt=""></a>
+    </nav>
+  </header>
+
   <main>
-    <header>
-      <img src="/images/Logo.png" alt="" id="header-logo">
-      <div id="div-search-bar">
-        <input id="div-search-bar" placeholder="Busque lugares...">
-        <button>
-          <img id="lupa" src="/icons/lupa.svg" alt="">
-        </button>
-      </div>
-
-      <nav>
-        <div class="nav-options"><a href="index.html">Home</a></div> 
-        <div class="nav-options"><a href="">Eventos</a></div>
-        <div class="nav-options"><a href="">Estabelecimentos</a></div>
-        <div class="nav-options"><a href="">Contato</a></div>
-
-        <button id="button-login"><a href="">Login</a></button>
-
-        <a id="account-circle" href=""><img src="/icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt=""></a>
-      </nav>
-    </header>
-
     <div id="menu">
       <nav>
         <button class="tab-button" onclick="openTab('tab1', event)">
@@ -121,8 +124,6 @@
     </div>
 
   </main>
-
-  <script src="/scripts/cadastro-usarios.js"></script>
 
 </body>
 </html>

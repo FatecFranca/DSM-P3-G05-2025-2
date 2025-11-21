@@ -1,201 +1,206 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="styles/index.css">
-  <link rel="stylesheet" href="styles/pages/cadastro-estabelecimentos.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 
-  <script src="/scripts/cadastro-estabelecimentos.js"></script>
-  <title>Roll</title>
+  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="./styles/componentes/header.css">
+  <link rel="stylesheet" href="./styles/pages/cadastro-estabelecimentos.css">
+
+  <script src="./scripts/search-handler.js" defer></script>
+  <script src="./scripts/cadastro-estabelecimentos.js" defer></script>
+  <title>Cadastro de Estabelecimentos - Rota Local</title>
 </head>
 <body>
+  <header>
+    <img src="./images/Logo.png" alt="Rota Local" id="header-logo">
     
-  <div id="main">
-    <header>
-      <img src="/images/Logo.png" alt="" id="header-logo">
-      <div id="div-search-bar">
-        <input id="div-search-bar" placeholder="Busque lugares...">
-        <button>
-          <img id="lupa" src="/icons/lupa.svg" alt="">
-        </button>
-      </div>
+    <form id="div-search-bar" data-js="search-form" action="">
+      <input data-js="search" class="search-input" placeholder="Busque lugares...">
+      <button type="submit" id="button-search-bar">
+        <img id="lupa" src="./icons/lupa.svg" alt="Buscar">
+      </button>
+    </form>
 
-      <nav>
-        <div class="nav-options"><a href="index.html">Home</a></div> 
-        <div class="nav-options"><a href="">Eventos</a></div>
-        <div class="nav-options"><a href="">Estabelecimentos</a></div>
-        <div class="nav-options"><a href="">Contato</a></div>
+    <nav>
+      <div class="nav-options"><a href="index.html">Home</a></div> 
+      <div class="nav-options"><a href="#">Eventos</a></div>
+      <div class="nav-options"><a href="estabelecimentos.html">Estabelecimentos</a></div>
+      <div class="nav-options"><a href="#">Contato</a></div>
 
-        <button id="button-login"><a href="">Login</a></button>
+      <button id="button-login"><a href="#">Login</a></button>
 
-        <a id="account-circle" href=""><img src="/icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt=""></a>
-      </nav>
-    </header>
+      <a id="account-circle" href="#"><img src="./icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt="Perfil"></a>
+    </nav>
+  </header>
+
+  <main>
     <div id="menu">
       <nav>
-          <button class="tab-button" onclick="openTab('tab1', event)">Cadastrar</button>
-
-          <button class="tab-button" onclick="openTab('tab2', event)">Editar</button>
-
-          <button class="tab-button" onclick="openTab('tab3', event)">Excluir </button>
+        <button class="tab-button" onclick="openTab('tab1', event)">
+          <p>Criar</p>
+        </button>
+        <button class="tab-button" onclick="openTab('tab2', event)">
+          <p>Editar</p>
+        </button>
+        <button class="tab-button" onclick="openTab('tab3', event)">
+          <p>Excluir</p>
+        </button>
       </nav>
       
-      <div class="tab-content active" id='tab1'>
-      
-        <form class="" >
-
+      <!-- Aba Criar -->
+      <div class="tab-content active" id="tab1">
+        <form id="create-establishment-form">
           <div class="form-field">
-            <label for="">Nome Fantasia</label>
-            <input class="register" type="text" placeholder="Bar do Zé" name="" id="input-nome-fantasia">
+            <label for="input-nome-fantasia">Nome Fantasia</label>
+            <input class="register form-input" type="text" placeholder="Bar do Zé" id="input-nome-fantasia">
           </div>
 
           <div class="form-field">
-            <label for="">Horário - Abertura</label>
-            <input class="register" type="text" placeholder="12:00" name="" id="input-openning-hour">
+            <label for="input-categoria">Categoria</label>
+            <input class="register form-input" type="text" placeholder="Restaurante" id="input-categoria">
           </div>
 
           <div class="form-field">
-            <label for="">Horário - Fechamento</label>
-            <input class="register" type="text" placeholder="3:30" name="" id="input-closing-hour">
+            <label for="input-openning-hour">Horário de Abertura</label>
+            <input class="register form-input" type="time" id="input-openning-hour">
           </div>
 
           <div class="form-field">
-            <label for="">Categoria</label>
-            <input class="register" type="text" placeholder="Restaurante" name="" id="input-categoria">
+            <label for="input-closing-hour">Horário de Fechamento</label>
+            <input class="register form-input" type="time" id="input-closing-hour">
+          </div>
+
+          <div class="form-field full-width">
+            <label for="input-tags">Tags</label>
+            <input class="register form-input" type="text" placeholder="Música ao vivo, drinks, porções" id="input-tags">
           </div>
 
           <div class="form-field">
-            <label for="">Tags</label>
-            <input class="register" type="text" placeholder="Música ao vivo, drinks, porções" name="" id="input-tags">
+            <label for="input-street">Rua</label>
+            <input class="register form-input" type="text" placeholder="Avenida dos Palmares" id="input-street">
           </div>
 
           <div class="form-field">
-            <label for="">Rua</label>
-            <input class="register" type="text" placeholder="Avenida dos palmares " name="" id="input-street">
-          </div>
-
-          <div class="form-field">
-            <label for="">Número</label>
-            <input class="register" type="text" placeholder="888" name="" id="input-street-number">
+            <label for="input-street-number">Número</label>
+            <input class="register form-input" type="number" placeholder="888" id="input-street-number">
           </div>
           
           <div class="form-field">
-            <label for="">Número de telefone</label>
-            <input class="register" type="text" placeholder="(16) 99685-5621" name="" id="input-phone-number">
+            <label for="input-phone-number">Telefone</label>
+            <input class="register form-input" type="text" placeholder="(16) 99685-5621" id="input-phone-number">
           </div>
 
           <div class="form-field">
-              <label for="">Razão Social</label>
-              <input class="register" type="text" placeholder="Bar do Zé LTDA." name="" id="input-razao-social">
-            </div>
+            <label for="input-razao-social">Razão Social</label>
+            <input class="register form-input" type="text" placeholder="Bar do Zé LTDA." id="input-razao-social">
+          </div>
 
-            <div class="form-field">
-              <label for="">CNPJ</label>
-              <input class="register" type="text" placeholder="96.752.874/0001-74" name="" id="input-cnpj">
-            </div>
+          <div class="form-field">
+            <label for="input-cnpj">CNPJ</label>
+            <input class="register form-input" type="text" placeholder="96.752.874/0001-74" id="input-cnpj">
+          </div>
 
+          <div class="form-field">
+            <label for="input-owner-cpf">CPF do Proprietário</label>
+            <input class="register form-input" type="text" placeholder="185.269.852-25" id="input-owner-cpf">
+          </div>
 
-            <div class="form-field">
-              <label for="">CPF do proprietário</label>
-              <input class="register" type="text" placeholder="185.269.852/25" name="" id="input-owner-cpf">
-            </div>
-         
+          <button type="button" id="create-button" class="submit-button">
+            <p>Cadastrar Estabelecimento</p>
+          </button>
         </form>
-        
-        <button id="create-button" class="large-button">
-          <p>Cadastrar</p>
-        </button>
       </div>
-      <div class="tab-content" id="tab2">
-         <form class=" " >
 
-          <div class="form-field id-search-field">
-            <label for="input-id-update">Id</label>
+      <!-- Aba Editar -->
+      <div class="tab-content" id="tab2">
+        <form id="edit-establishment-form">
+          <div class="form-field full-width id-search-field">
+            <label for="input-id-update">ID do Estabelecimento</label>
             <div class="id-search-controls">
-              <input data-update="id" type="text" placeholder="5" id="input-id-update" class="input-id" name="id-update">
-              <button type="button" class="large-button" id="edit-id-button" name="search-update-btt">
-                <p>Buscar</p>
+              <input data-update="id" type="text" placeholder="5" id="input-id-update" class="form-input">
+              <button type="button" class="search-button" id="edit-id-button">
+                Buscar
               </button>
             </div>
           </div>
 
           <div class="form-field">
-            <label for="">Nome Fantasia</label>
-            <input type="text" data-update="nome-fantasia" placeholder="Bar do Zé" id="input-nome-fantasia" class="update" name="place_name-update">
+            <label for="edit-nome-fantasia">Nome Fantasia</label>
+            <input type="text" data-update="nome-fantasia" placeholder="Bar do Zé" id="edit-nome-fantasia" class="update form-input">
           </div>
 
           <div class="form-field">
-            <label for="">Horário - Abertura</label>
-            <input data-update="openning-hour" type="text" placeholder="12:00" id="input-openning-hour" class="update" name="opening_hours-update">
+            <label for="edit-categoria">Categoria</label>
+            <input type="text" data-update="categoria" placeholder="Restaurante" id="edit-categoria" class="update form-input">
           </div>
 
           <div class="form-field">
-            <label for="">Horário - Fechamento</label>
-            <input data-update="closing-hour" type="text" placeholder="3:30" id="input-closing-hour" class="update" name="closing_hours-update">
+            <label for="edit-openning-hour">Horário de Abertura</label>
+            <input data-update="openning-hour" type="time" id="edit-openning-hour" class="update form-input">
           </div>
 
           <div class="form-field">
-            <label for="">Tags</label>
-            <input data-update="tags" type="text" placeholder="bar, restaurante, drinks" id="input-tags" class="update" name="tags-update">
+            <label for="edit-closing-hour">Horário de Fechamento</label>
+            <input data-update="closing-hour" type="time" id="edit-closing-hour" class="update form-input">
+          </div>
+
+          <div class="form-field full-width">
+            <label for="edit-tags">Tags</label>
+            <input data-update="tags" type="text" placeholder="bar, restaurante, drinks" id="edit-tags" class="update form-input">
           </div>
 
           <div class="form-field">
-            <label for="">Rua</label>
-            <input data-update="street" type="text" placeholder="Avenida dos palmares" id="input-street" class="update" name="street-update">
+            <label for="edit-street">Rua</label>
+            <input data-update="street" type="text" placeholder="Avenida dos Palmares" id="edit-street" class="update form-input">
           </div>
 
           <div class="form-field">
-            <label for="">Número</label>
-            <input data-update="street-number" type="text" placeholder="888" id="input-street-number" class="update" name="street_number-update">
+            <label for="edit-street-number">Número</label>
+            <input data-update="street-number" type="number" placeholder="888" id="edit-street-number" class="update form-input">
           </div>
           
           <div class="form-field">
-            <label for="">Número de telefone</label>
-            <input data-update="phone-number" type="text" placeholder="(16) 99685-5621" id="input-phone-number" class="update" name="phone_number-update">
+            <label for="edit-phone-number">Telefone</label>
+            <input data-update="phone-number" type="text" placeholder="(16) 99685-5621" id="edit-phone-number" class="update form-input">
           </div>
 
           <div class="form-field">
-              <label for="">Razão Social</label>
-              <input data-update="razao-social" type="text" placeholder="Bar do Zé LTDA." id="input-razao-social" class="update" name="razao_social-update">
-            </div>
+            <label for="edit-razao-social">Razão Social</label>
+            <input data-update="razao-social" type="text" placeholder="Bar do Zé LTDA." id="edit-razao-social" class="update form-input">
+          </div>
 
-            <!-- <div class="form-field">
-              <label for="">CPF do proprietário</label>
-              <input data-update="owner-cpf" type="text" placeholder="122.556.198/63" id="input-owner-cpf" class="update" name="cpf-owner-update">
-            </div> -->
+          <div class="form-field">
+            <label for="edit-cnpj">CNPJ</label>
+            <input data-update="cnpj" type="text" placeholder="96.752.874/0001-74" id="edit-cnpj" class="update form-input">
+          </div>
 
-            <div class="form-field">
-              <label for="">CNPJ</label>
-              <input data-update="cnpj" type="text" placeholder="96.752.874/0001-74" id="input-cnpj" class="update" name="cnpj-update">
-            </div>
-         
+          <button type="button" id="update-button" class="submit-button">
+            <p>Atualizar Estabelecimento</p>
+          </button>
         </form>
-        
-        <button id="update-button" class="large-button">
-          <p>Editar</p>
-        </button>
       </div>
 
+      <!-- Aba Excluir -->
       <div class="tab-content" id="tab3">
-        <form action="">
-          <div class="form-field">
-            <label for="">Id</label>
-            <input type="text" class="input-id" placeholder="7">
-            <button button class="large-button" id="exclude-button"> Excluir </button>
+        <form id="delete-establishment-form">
+          <div class="form-field full-width">
+            <label for="delete-id">ID do Estabelecimento</label>
+            <input type="text" class="form-input" placeholder="7" id="delete-id">
           </div>
+          <button type="button" class="submit-button danger" id="exclude-button">
+            <p>Excluir Estabelecimento</p>
+          </button>
         </form>
       </div>
     </div>
-
-    
-  </div>
+  </main>
 </body>
 </html>

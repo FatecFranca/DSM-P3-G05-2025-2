@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Estabelecimento</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/styles/index.css">
+  <link rel="stylesheet" href="/styles/pages/perfil-estabelecimento.css">
+
+  <script src="/scripts/search-handler.js" defer></script>
+  <script src="/scripts/perfil-estabelecimento.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="/images/Logo.png" alt="" id="header-logo">
+    
+    <form id="div-search-bar" data-js="search-form" action="">
+      <input data-js="search" class="search-input" placeholder="Busque lugares...">
+      <button type="submit" id="button-search-bar">
+        <img id="lupa" src="/icons/lupa.svg" alt="">
+      </button>
+    </form>
+
+    <nav>
+      <div class="nav-options"><a href="index.html">Home</a></div> 
+      <div class="nav-options"><a href="">Eventos</a></div>
+      <div class="nav-options"><a href="estabelecimentos.html">Estabelecimentos</a></div>
+      <div class="nav-options"><a href="">Contato</a></div>
+
+      <button id="button-login"><a href="">Login</a></button>
+
+      <a id="account-circle" href=""><img src="/icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt=""></a>
+    </nav>
+  </header>
+
+  <main class="profile-main">
+    <div class="profile-container">
+      
+      <!-- Image Gallery -->
+      <div class="image-gallery" id="image-gallery">
+        <div class="main-image-container">
+          <img src="" alt="Imagem Principal" id="main-image" class="main-image">
+        </div>
+        
+        <button class="nav-btn prev-btn" id="prev-btn" aria-label="Imagem anterior">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="nav-btn next-btn" id="next-btn" aria-label="Próxima imagem">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <div class="thumbnails-container" id="thumbnails-container">
+          <!-- Thumbnails injected by JS -->
+        </div>
+
+        <div class="image-counter" id="image-counter">1 / 4</div>
+      </div>
+
+      <!-- Establishment Info -->
+      <div class="establishment-info">
+        <div class="info-header">
+          <h1 id="estab-name">Nome do Estabelecimento</h1>
+          
+          <div class="meta-info">
+            <span class="category-badge" id="estab-category">Categoria</span>
+            <div class="rating-container">
+              <div class="stars" id="stars-container">
+                <!-- Stars injected by JS -->
+              </div>
+              <span class="rating-text">
+                <span id="estab-rating">0.0</span>
+                <span class="review-count">(<span id="estab-reviews">0</span> avaliações)</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tags-section">
+          <p class="section-label">Características</p>
+          <div class="tags-list" id="tags-list">
+            <!-- Tags injected by JS -->
+          </div>
+        </div>
+
+        <div class="address-card">
+          <div class="card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <p class="section-label">Localização</p>
+              <p class="address-text" id="estab-address">Endereço...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <div class="contact-card phone-card">
+          <div class="card-header">
+            <div>
+              <p class="section-label">Telefone</p>
+              <p class="phone-text" id="estab-phone">...</p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-primary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <a href="#" id="call-btn" class="action-btn">Ligar Agora</a>
+        </div>
+
+        <div class="contact-card hours-card">
+          <div class="card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <p class="section-label">Horário de Funcionamento</p>
+              <div class="hours-list">
+                <p><span>Abre:</span> <span id="hours-open">...</span></p>
+                <p><span>Fecha:</span> <span id="hours-close">...</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <section class="comments-section">
+        <div class="section-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-primary"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <h2>Comentários</h2>
+        </div>
+
+        <form id="comment-form" class="comment-form">
+          <div class="form-group">
+            <label for="userId">Email do usuário</label>
+            <input type="email" id="userId" placeholder="Digite seu email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="comment">Comentário</label>
+            <textarea id="comment" rows="4" placeholder="Compartilhe sua experiência..." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-comment-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <span>Enviar Comentário</span>
+          </button>
+        </form>
+
+        <div id="comments-list" class="comments-list">
+          <!-- Static Review Component (Design Only) -->
+          <div class="review-card">
+            <div class="review-header">
+              <h3 class="review-author">João Guilherme</h3>
+            </div>
+            <p class="review-text">
+              Lugar incrível! O atendimento foi excelente e o ambiente é muito acolhedor. Recomendo a todos que buscam um café de qualidade.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

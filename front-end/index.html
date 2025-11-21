@@ -1,11 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Rota Local - Descubra os Melhores Estabelecimentos</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="./images/Logo_simp_R.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="./styles/index.css">
+  
+  <script src="./scripts/search-handler.js" defer></script>
+  <script src="./scripts/index.js" defer></script>
 </head>
 <body>
-  
+  <header>
+    <img src="./images/Logo.png" alt="Rota Local Logo" id="header-logo">
+    
+    <form id="div-search-bar" data-js="search-form" action="">
+      <input data-js="search" class="search-input" placeholder="Busque lugares...">
+      <button type="submit" id="button-search-bar">
+        <img id="lupa" src="./icons/lupa.svg" alt="Buscar">
+      </button>
+    </form>
+
+    <nav>
+      <div class="nav-options"><a href="index.html" class="active">Home</a></div> 
+      <div class="nav-options"><a href="#">Eventos</a></div>
+      <div class="nav-options"><a href="estabelecimentos.html">Estabelecimentos</a></div>
+      <div class="nav-options"><a href="#">Contato</a></div>
+
+      <button id="button-login"><a href="#">Login</a></button>
+
+      <a id="account-circle" href="#"><img src="./icons/account_circle_1000dp_FFFFFF_FILL0_wght400_GRAD0_opsz48(1).svg" alt="Perfil"></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Descubra os <span class="highlight">Melhores Lugares</span> da Sua Cidade</h1>
+        <p class="hero-subtitle">Explore restaurantes, cafés, bares e muito mais. Tudo em um só lugar.</p>
+        <div class="hero-buttons">
+          <a href="estabelecimentos.html" class="btn btn-primary">Explorar Agora</a>
+          <a href="cadastro-estabelecimentos.html" class="btn btn-secondary">Cadastrar Estabelecimento</a>
+        </div>
+      </div>
+      <div class="hero-decoration">
+        <div class="floating-card card-1"></div>
+        <div class="floating-card card-2"></div>
+        <div class="floating-card card-3"></div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <h2 class="section-title">Por que usar o <span class="highlight">Rota Local</span>?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Busca Inteligente</h3>
+          <p>Encontre o lugar perfeito com nossa busca avançada e filtros personalizados.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <h3>Avaliações Reais</h3>
+          <p>Veja avaliações de outros usuários e faça escolhas informadas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h3>Localização</h3>
+          <p>Descubra estabelecimentos próximos a você com mapas interativos.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎉</div>
+          <h3>Eventos</h3>
+          <p>Fique por dentro dos melhores eventos e promoções da região.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="cta-content">
+        <h2>Tem um estabelecimento?</h2>
+        <p>Cadastre seu negócio e alcance mais clientes!</p>
+        <a href="cadastro-estabelecimentos.html" class="btn btn-cta">Começar Agora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Rota Local</h4>
+        <p>Conectando você aos melhores lugares da sua cidade.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="estabelecimentos.html">Estabelecimentos</a></li>
+          <li><a href="#">Eventos</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Para Empresas</h4>
+        <ul>
+          <li><a href="cadastro-estabelecimentos.html">Cadastrar Estabelecimento</a></li>
+          <li><a href="cadastro-usuarios.html">Criar Conta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Rota Local. Todos os direitos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>

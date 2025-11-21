@@ -19,6 +19,10 @@ function openTab(tabId, event) {
       menu.classList.remove('compact');
     }
   }
+
+  // Reseta todos os formulários ao trocar de aba
+  const forms = document.querySelectorAll('#menu form');
+  forms.forEach(form => form.reset());
 }
 
 // ===== Cadastro de estabelecimento (POST /estabelecimentos) =====
@@ -43,7 +47,7 @@ async function registerEstabelecimento() {
     category_title: getVal('input-categoria'),
     razao_social: getVal('input-razao-social'),
     cnpj: getVal('input-cnpj'),
-  owner_cpf: getVal('input-owner-cpf').replaceAll(/\D/g, '')
+    owner_cpf: getVal('input-owner-cpf').replaceAll(/\D/g, '')
   };
 
   try {
@@ -66,12 +70,15 @@ async function registerEstabelecimento() {
 
 // ===== Busca e preenchimento para edição (GET /estabelecimentos/:id) =====
 async function fetchAndFillEstabelecimento(id) {
+  console.log('fetchAndFillEstabelecimento chamada com ID:', id);
+  
   if (!id) {
     alert('Por favor, insira um ID para buscar.');
     return;
   }
 
   try {
+    console.log('Fazendo fetch para:', `http://localhost:3000/estabelecimentos/${id}`);
     const res = await fetch(`http://localhost:3000/estabelecimentos/${id}`);
     const data = await res.json();
 
@@ -81,41 +88,38 @@ async function fetchAndFillEstabelecimento(id) {
 
     console.log('API response (GET):', data);
 
-    // Preenche os campos na aba de edição (#tab2)
-    const inputs = document.querySelectorAll('#tab2 .update');
-    inputs.forEach(input => {
-      const rawKey = input.getAttribute('name') || '';
-      const key = rawKey.endsWith('-update')
-        ? rawKey.replace(/-update$/, '')
-        : rawKey;
-      const normalizedKey = key.replace(/-/g, '_');
-      let value = null;
+    // Mapeamento direto de ID do input para campo da API
+    const fieldMap = {
+      'edit-nome-fantasia': data.place_name,
+      'edit-categoria': data.category?.title || data.category_title,
+      'edit-openning-hour': data.opening_hours,
+      'edit-closing-hour': data.closing_hours,
+      'edit-tags': Array.isArray(data.tags) ? data.tags.join(', ') : data.tags,
+      'edit-street': data.street,
+      'edit-street-number': data.street_number,
+      'edit-phone-number': data.phone_number,
+      'edit-razao-social': data.infoPrivPlace?.razao_social || data.razao_social,
+      'edit-cnpj': data.infoPrivPlace?.cnpj || data.cnpj
+    };
 
-      // Resolve valor a partir do topo ou subdocumentos conhecidos
-      if (normalizedKey === 'tags' && Array.isArray(data.tags)) {
-        value = data.tags.join(', ');
-      } else if (data[normalizedKey] !== undefined && data[normalizedKey] !== null) {
-        value = data[normalizedKey];
-      } else if (
-        data.infoPrivPlace &&
-        data.infoPrivPlace[normalizedKey] !== undefined &&
-        data.infoPrivPlace[normalizedKey] !== null
-      ) {
-        value = data.infoPrivPlace[normalizedKey];
-      } else if (normalizedKey === 'category_title' && data.category && data.category.title) {
-        value = data.category.title;
-      }
-
-      if (value !== null) {
-        const strVal = Array.isArray(value) ? value.join(', ') : String(value);
-        // Preenche value e placeholder para melhor UX
+    // Preenche os campos
+    console.log('Iniciando preenchimento dos campos...');
+    let preenchidos = 0;
+    for (const [inputId, value] of Object.entries(fieldMap)) {
+      const input = document.getElementById(inputId);
+      console.log(`Campo ${inputId}:`, { encontrado: !!input, valor: value });
+      if (input && value !== undefined && value !== null) {
+        const strVal = String(value);
         input.value = strVal;
         input.placeholder = strVal;
-        // Re-aplica máscaras (telefone, cnpj, cpf, hora etc.)
+        preenchidos++;
+        // Re-aplica máscaras
         input.dispatchEvent(new Event('input'));
         input.dispatchEvent(new Event('blur'));
       }
-    });
+    }
+    console.log(`${preenchidos} campos preenchidos com sucesso!`);
+    alert(`Estabelecimento carregado! ${preenchidos} campos preenchidos.`);
 
   } catch (err) {
     console.error('Erro ao buscar estabelecimento:', err);
@@ -125,16 +129,17 @@ async function fetchAndFillEstabelecimento(id) {
 
 // ===== Atualização de estabelecimento (PUT /estabelecimentos/:id) =====
 async function updateEstabelecimento() {
-  const idInput = document.querySelector('#tab2 input[name="id-update"]');
+  const idInput = document.getElementById('input-id-update');
   const id = idInput ? idInput.value.trim() : '';
   if (!id) {
     alert('Informe o ID do estabelecimento antes de editar.');
     return;
   }
 
-  const inputs = document.querySelectorAll('#tab2 [data-update]');
+  const inputs = document.querySelectorAll('#tab2 .update');
   const keyMap = {
     'nome-fantasia': 'place_name',
+    'categoria': 'category_title',
     'openning-hour': 'opening_hours',
     'closing-hour': 'closing_hours',
     'tags': 'tags',
@@ -142,14 +147,13 @@ async function updateEstabelecimento() {
     'street-number': 'street_number',
     'phone-number': 'phone_number',
     'razao-social': 'razao_social',
-    'owner-cpf': 'owner_cpf',
-    'cnpj': 'cnpj',
-    'category-title': 'category_title'
+    'cnpj': 'cnpj'
   };
 
   const payload = {};
   for (const input of inputs) {
-    const rawKey = input.dataset.update;
+    const inputId = input.id || '';
+    const rawKey = inputId.replace(/^edit-/, '');
     if (!rawKey) continue;
     const apiKey = keyMap[rawKey] || rawKey.replace(/-/g, '_');
     const value = input.value.trim();
@@ -163,11 +167,6 @@ async function updateEstabelecimento() {
       if (tags.length) {
         payload.tags = tags;
       }
-      continue;
-    }
-
-    if (apiKey === 'owner_cpf') {
-      payload[apiKey] = value.replace(/\D/g, '');
       continue;
     }
 
@@ -202,7 +201,7 @@ async function updateEstabelecimento() {
 
 // ===== Exclusão de estabelecimento (DELETE /estabelecimentos/:id) =====
 async function deleteEstabelecimento() {
-  const idInput = document.querySelector('#tab3 .input-id');
+  const idInput = document.getElementById('delete-id');
   const id = idInput ? idInput.value.trim() : '';
 
   if (!id) {
@@ -342,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // encontrar todos (tab1 e tab2).
 
   // Horários (abertura/fechamento)
-  const elsOpen = document.querySelectorAll('[id="input-openning-hour"]');
+  const elsOpen = document.querySelectorAll('#input-openning-hour, #edit-openning-hour');
   for (const el of elsOpen) {
     on(el, 'input', e => { e.target.value = formatTimeTyping(e.target.value); });
     on(el, 'blur', e => { e.target.value = formatTimeBlur(e.target.value); });
@@ -350,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el.value) { el.value = formatTimeBlur(el.value); }
   }
 
-  const elsClose = document.querySelectorAll('[id="input-closing-hour"]');
+  const elsClose = document.querySelectorAll('#input-closing-hour, #edit-closing-hour');
   for (const el of elsClose) {
     on(el, 'input', e => { e.target.value = formatTimeTyping(e.target.value); });
     on(el, 'blur', e => { e.target.value = formatTimeBlur(e.target.value); });
@@ -359,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Telefone
-  const elsPhone = document.querySelectorAll('[id="input-phone-number"]');
+  const elsPhone = document.querySelectorAll('#input-phone-number, #edit-phone-number');
   for (const el of elsPhone) {
     on(el, 'input', e => { e.target.value = formatPhone(e.target.value); });
     el.setAttribute('maxlength', '16'); // (99) 99999-9999
@@ -367,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // CPF
-  const elsCPF = document.querySelectorAll('[id="input-owner-cpf"]');
+  const elsCPF = document.querySelectorAll('#input-owner-cpf');
   for (const el of elsCPF) {
     on(el, 'input', e => { e.target.value = formatCPF(e.target.value); });
     el.setAttribute('maxlength', '14'); // 000.000.000-00
@@ -375,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // CNPJ
-  const elsCNPJ = document.querySelectorAll('[id="input-cnpj"]');
+  const elsCNPJ = document.querySelectorAll('#input-cnpj, #edit-cnpj');
   for (const el of elsCNPJ) {
     on(el, 'input', e => { e.target.value = formatCNPJ(e.target.value); });
     el.setAttribute('maxlength', '18'); // 00.000.000/0000-00
@@ -383,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Número da rua (apenas dígitos)
-  const elsStreetNum = document.querySelectorAll('[id="input-street-number"]');
+  const elsStreetNum = document.querySelectorAll('#input-street-number, #edit-street-number');
   for (const el of elsStreetNum) {
     on(el, 'input', e => { e.target.value = numericOnly(e.target.value); });
     el.setAttribute('maxlength', '6');
@@ -406,22 +405,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Listener do botão "buscar" (aba 2)
-  const btnSearch = document.querySelector('button[name="search-update-btt"]');
+  const btnSearch = document.getElementById('edit-id-button');
+  console.log('Botão buscar encontrado?', btnSearch);
   if (btnSearch) {
     btnSearch.addEventListener('click', async (e) => {
       e.preventDefault();
       e.stopPropagation();
       
-      const idInput = document.querySelector('#tab2 input[name="id-update"]');
+      const idInput = document.getElementById('input-id-update');
       const id = idInput ? idInput.value.trim() : null;
       
+      if (!id) {
+        alert('Por favor, digite um ID no campo antes de buscar.');
+        return;
+      }
+      
+      const originalText = btnSearch.innerText;
       btnSearch.disabled = true;
+      btnSearch.innerText = 'Buscando...';
+      
       try {
         await fetchAndFillEstabelecimento(id);
+      } catch (err) {
+        console.error(err);
+        alert('Erro ao buscar: ' + (err.message || err));
       } finally {
         btnSearch.disabled = false;
+        btnSearch.innerText = originalText;
       }
     });
+  } else {
+    console.error('Botão edit-id-button não foi encontrado no DOM!');
   }
 
   // Listener do botão "Editar" (aba 2)
